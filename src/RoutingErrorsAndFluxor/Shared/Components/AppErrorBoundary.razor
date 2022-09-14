@@ -1,0 +1,22 @@
+﻿@inherits FluxorComponent
+
+@inject IState<AppErrorState> State
+
+@if (State.Value.HasErrors)
+{
+    <ul>
+    @foreach (string errorMessage in State.Value.ErrorMessages)
+    {
+            <li>@errorMessage</li>
+    }
+    </ul>
+}
+else
+{
+    @ChildContent
+}
+
+@code {
+    [Parameter]
+    public RenderFragment ChildContent { get; set; }
+}
